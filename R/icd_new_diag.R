@@ -23,6 +23,5 @@ icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
   data %>% select(!!colvec) %>%
     mutate_all(funs(as.character)) %>%
     map_df(f1) %>%
-    mutate(new_diag = f2(.)) %>%
-    pull(new_diag)
+    transmute(new_diag = f2(.))
 }
