@@ -10,10 +10,6 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/epinotes/useicd10cm
 BugReports: https://github.com/epinotes/useicd10cm/issues
-Suggests: 
-testthat
+Suggests: testthat
 RoxygenNote: 6.1.1
-Imports: 
-dplyr,
-purrr,
-fuzzyjoin
+Imports: dplyr, purrr, fuzzyjoin
