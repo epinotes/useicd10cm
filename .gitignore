@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+useicd10cm.Rcheck/
+useicd10cm*.tar.gz
+useicd10cm*.tgz

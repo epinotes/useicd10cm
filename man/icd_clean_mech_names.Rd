@@ -5,7 +5,7 @@
 \title{clean the mechanism categories replacing space and other symbols
  with _.}
 \usage{
-icd_clean_mech_names(...)
+icd_clean_mech_names(x)
 }
 \arguments{
 \item{x}{input variable}

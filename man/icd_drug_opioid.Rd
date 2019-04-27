@@ -12,15 +12,14 @@ icd_drug_opioid(data, diag_ecode_col)
 \item{diag_ecode_col}{column indices}
 }
 \value{
-any_drug, any_opioid, non_heroin_opioid, and
-  heroin
+any_drug, any_opioid, non_heroin_opioid,
+  heroin, stimulant
 }
 \description{
 Find any drug and selected opioids
 }
 \examples{
-to be added
 library(tidyverse)
-filter(hosp_set, year == 2016, quarters(discharge_date) == "Q4" ) \%>\% od_drug_apr_icd10cm(diag_ecode_col = c(3, 6)) \%>\% sample_n(5)
+filter(hosp_set, year == 2016, quarters(discharge_date) == "Q4" ) \%>\% icd_drug_opioid(diag_ecode_col = c(3, 6)) \%>\% sample_n(5)
 
 }

@@ -4,7 +4,7 @@
 \alias{icd_make_regex1}
 \title{transform the ICD-10-CM codes into an operational regular expression.}
 \usage{
-icd_make_regex1(...)
+icd_make_regex1(x)
 }
 \arguments{
 \item{x}{input variable}
