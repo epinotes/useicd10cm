@@ -11,13 +11,11 @@
 #' @export
 #'
 #' @examples
+#'
 #' dat <- tibble(x1 = letters[1:3], x2 = c("d", "a", "e"))
-
+#' library(tidyverse)
 #' dat %>% mutate(x3 = icd_first_valid(., colvec = c(1:2), pattern = "a"))
 
-#' library(tidyverse)
-#' icd_make_regex1(c("X45x2", "Y65xx"))
-#'
 #'
 icd_first_valid <- function(data, colvec, pattern){
 colvec <- enquo(colvec)

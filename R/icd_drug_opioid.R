@@ -1,6 +1,6 @@
 #' Find drug types from ICD-10-CM.
 #'
-#' Find any drug and selected opioids
+#' Find any drug, selected opioids and stimulants
 #'
 #' @param data input data
 #' @param diag_ecode_col column indices
@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' library(tidyverse)
-#' filter(hosp_set, year == 2016, quarters(discharge_date) == "Q4" ) %>% icd_drug_opioid(diag_ecode_col = c(3, 6)) %>% sample_n(5)
+#' icd10cm_data150 %>% icd_drug_opioid(diag_ecode_col = c(2:6)) %>% sample_n(10)
 #'
 icd_drug_opioid <- function(data, diag_ecode_col) {
   drugs_icd10cm_ <-

@@ -16,10 +16,10 @@ any_drug, any_opioid, non_heroin_opioid,
   heroin, stimulant
 }
 \description{
-Find any drug and selected opioids
+Find any drug, selected opioids and stimulants
 }
 \examples{
 library(tidyverse)
-filter(hosp_set, year == 2016, quarters(discharge_date) == "Q4" ) \%>\% icd_drug_opioid(diag_ecode_col = c(3, 6)) \%>\% sample_n(5)
+icd10cm_data150 \%>\% icd_drug_opioid(diag_ecode_col = c(2:6)) \%>\% sample_n(10)
 
 }
