@@ -13,7 +13,7 @@ icd_drug_opioid(data, diag_ecode_col)
 }
 \value{
 any_drug, any_opioid, non_heroin_opioid,
-  heroin, stimulant
+  heroin, stimulant, cocaine, stimulant_not_cocaine
 }
 \description{
 Find any drug, selected opioids and stimulants

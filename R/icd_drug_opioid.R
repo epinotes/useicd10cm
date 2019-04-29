@@ -6,7 +6,7 @@
 #' @param diag_ecode_col column indices
 #'
 #' @return any_drug, any_opioid, non_heroin_opioid,
-#'   heroin, stimulant
+#'   heroin, stimulant, cocaine, stimulant_not_cocaine
 #' @export
 #'
 #' @examples
@@ -24,6 +24,10 @@ icd_drug_opioid <- function(data, diag_ecode_col) {
   heroin_icd10cm_ <- "T401.[1-4](A|$)"
 
   stimulant_icd10cm_ <- "((T405.|T436[0-49])[1-4])(A|$)"
+
+  cocaine_icd10cm_ <- "T405.[1-4](A|$)"
+
+  stimulant_not_cocaine_icd10cm_ <- "436[0-49][1-4](A|$)"
 
 
   data %>%
@@ -46,7 +50,14 @@ icd_drug_opioid <- function(data, diag_ecode_col) {
 
       stimulant = icd_new_diag(.,
                             expr = stimulant_icd10cm_,
-                            colvec = diag_ecode_col)
+                            colvec = diag_ecode_col),
+      cocaine = icd_new_diag(.,
+                               expr = cocaine_icd10cm_,
+                               colvec = diag_ecode_col),
+      stimulant_not_cocaine = icd_new_diag(.,
+                               expr = stimulant_not_cocaine_icd10cm_,
+                               colvec = diag_ecode_col)
     ) %>%
-    mutate(non_heroin_opioid = ifelse(heroin == 1, 0, non_heroin_opioid))
+    mutate(non_heroin_opioid = ifelse(heroin == 1, 0, non_heroin_opioid),
+           stimulant_not_cocaine = ifelse(cocaine == 1, 0, stimulant_not_cocaine))
 }
