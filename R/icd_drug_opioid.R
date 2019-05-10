@@ -60,6 +60,6 @@ icd_drug_opioid <- function(data, diag_ecode_col) {
                                expr = non_cocaine_stimulant_icd10cm_,
                                colvec = diag_ecode_col)
     ) %>%
-    mutate(non_heroin_opioid = as.factor(ifelse(heroin == 1, 0, non_heroin_opioid)),
-           non_cocaine_stimulant = as.factor(ifelse(cocaine == 1, 0, non_cocaine_stimulant)))
+    mutate(non_heroin_opioid = ifelse(heroin == 1, 0, non_heroin_opioid),
+           non_cocaine_stimulant = ifelse(cocaine == 1, 0, non_cocaine_stimulant))
 }
