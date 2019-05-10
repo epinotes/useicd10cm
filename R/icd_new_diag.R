@@ -21,7 +21,7 @@ icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
   f2 = function(x){sign(rowSums(x, na.rm = TRUE))}
 
   data %>% select(!!colvec) %>%
-    mutate_all(funs(as.character)) %>%
+    mutate_all(list(~as.character)) %>%
     map_df(f1) %>%
     transmute(new_diag = f2(.)) %>%
     unlist()
