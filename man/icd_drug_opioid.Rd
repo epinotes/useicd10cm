@@ -19,7 +19,9 @@ any_drug, any_opioid, non_heroin_opioid,
 Find any drug, selected opioids and stimulants
 }
 \examples{
-library(tidyverse)
+
+library(dplyr)
+library(purrr)
 icd10cm_data150 \%>\% icd_drug_opioid(diag_ecode_col = c(2:6)) \%>\% sample_n(10)
 
 }

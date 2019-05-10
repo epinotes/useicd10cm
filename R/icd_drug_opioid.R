@@ -10,7 +10,9 @@
 #' @export
 #'
 #' @examples
-#' library(tidyverse)
+#'
+#'library(dplyr)
+#'library(purrr)
 #' icd10cm_data150 %>% icd_drug_opioid(diag_ecode_col = c(2:6)) %>% sample_n(10)
 #'
 icd_drug_opioid <- function(data, diag_ecode_col) {

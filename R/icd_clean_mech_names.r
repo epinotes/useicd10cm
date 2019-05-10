@@ -10,7 +10,7 @@
 #' @importFrom purrr compose
 #'
 #' @examples
-#' library(tidyverse)
+#' # library(tidyverse)
 #' icd_clean_mech_names(c("Natural/Environmental, Other"))
 #'
 #'

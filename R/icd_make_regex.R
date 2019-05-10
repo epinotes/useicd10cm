@@ -9,7 +9,7 @@
 #' @importFrom purrr compose
 #'
 #' @examples
-#' library(tidyverse)
+#' # library(tidyverse)
 #' icd_make_regex(c("X45x2", "Y65xx"))
 #'
 

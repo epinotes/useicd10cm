@@ -14,7 +14,7 @@
 #' @importFrom purrr map2_dfc
 #'
 #' @examples
-#' library(tidyverse)
+#' # library(tidyverse)
 #' dat <- data.frame(d1 = c("T63023", "X92821", "X99100", "T360x"),
 #' d2 = c("T65823", "Y030x0", "T17200", "V0100x" ))
 #'
