@@ -1,6 +1,4 @@
 
-#' The icd10cm injury matrix.
-#'
 #' Dataset of 93 rows and 3 variables.
 #' grouped by intent and mechanism from original with icd10cm code in regular expressions
 #'
@@ -76,6 +74,20 @@
 #' @examples
 #' icd10cm_data150
 "icd10cm_data150"
+
+#' icd-10-cm list and descriptions original.
+#'
+#' Dataset of 143,865 rows and 2 variables.
+#'
+#'
+#' @format Data frame
+#' @source
+#'   \url{https://www.cdc.gov/nchs/icd/icd10cm.htm}
+#' @keywords datasets
+#' @examples
+#' tail(icd10cm_codes_2019)
+
+"icd10cm_codes_2019"
 
 #' icd-10-cm list and descriptions.
 #'

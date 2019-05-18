@@ -18,6 +18,7 @@ clean the mechanism categories replacing space and other symbols
  with _.
 }
 \examples{
-# library(tidyverse)
+library(dplyr)
 icd_clean_mech_names(c("Natural/Environmental, Other"))
+
 }

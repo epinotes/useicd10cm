@@ -3,7 +3,8 @@
 \docType{data}
 \name{icd10cm_inj_regex}
 \alias{icd10cm_inj_regex}
-\title{The icd10cm injury matrix.}
+\title{Dataset of 93 rows and 3 variables.
+grouped by intent and mechanism from original with icd10cm code in regular expressions}
 \format{Data frame}
 \source{
 modified from the injury matrix "icd10cm_injury_matrix"

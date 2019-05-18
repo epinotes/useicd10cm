@@ -13,13 +13,17 @@
 #' library(dplyr)
 #' library(purrr)
 #' dat %>% mutate(x3 = icd_first_valid_index(., colvec = c(1:2), pattern = "a"))
+#'
 icd_first_valid_index <- function(data, colvec, pattern) {
+
+  requireNamespace("dplyr", quietly = T)
+
   colvec <- enquo(colvec)
   f0 <- function(x) grepl(pattern = pattern, x, ignore.case = T, perl = T)
-  f1 <- function(x) detect_index(x, f0)
+  f1 <- function(x) purrr::detect_index(x, f0)
   data %>%
     select(!!colvec) %>%
-    map_dfr(as.character) %>%
-    transpose() %>%
-    map_int(f1)
+    purrr::map_dfr(as.character) %>%
+    purrr::transpose() %>%
+    purrr::map_int(f1)
 }

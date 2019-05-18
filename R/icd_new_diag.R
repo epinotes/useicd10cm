@@ -1,8 +1,8 @@
 #' Create a new variable based on pattern in the argument expr
 #'
-#' @param data: input data
-#' @param expr: regular expression describing the pattern of interest
-#' @param colvec: indices of variables of interest
+#' @param data input data
+#' @param expr regular expression describing the pattern of interest
+#' @param colvec indices of variables of interest
 #' @param ignore.case logical
 #' @param perl logical
 #'
@@ -17,6 +17,9 @@
 #'   mutate(hero = icd_new_diag(., expr = "T401.[1-4]", colvec = c(2:6))) %>%
 #'   count(hero)
 icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
+
+  requireNamespace("dplyr", quietly = T)
+
   colvec <- enquo(colvec)
   # assign '1' if the regular expression matched
   f1 <- function(x) grepl(expr, x, ignore.case = ignore.case, perl = perl)
@@ -28,7 +31,7 @@ icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
   data %>%
     select(!!colvec) %>%
     mutate_all(as.character) %>%
-    map_dfr(f1) %>%
+    purrr::map_dfr(f1) %>%
     transmute(new_diag = f2(.)) %>%
     unlist()
 }

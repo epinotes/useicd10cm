@@ -7,15 +7,15 @@
 icd_new_diag(data, expr, colvec, ignore.case = T, perl = T)
 }
 \arguments{
+\item{data}{input data}
+
+\item{expr}{regular expression describing the pattern of interest}
+
+\item{colvec}{indices of variables of interest}
+
 \item{ignore.case}{logical}
 
 \item{perl}{logical}
-
-\item{data:}{input data}
-
-\item{expr:}{regular expression describing the pattern of interest}
-
-\item{colvec:}{indices of variables of interest}
 }
 \value{
 new variable matching the pattern described in the regular expression

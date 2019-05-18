@@ -9,8 +9,9 @@
 #' @importFrom purrr compose
 #'
 #' @examples
-#' # library(tidyverse)
+#' library(dplyr)
 #' icd_make_regex(c("X45x2", "Y65xx"))
+#'
 icd_make_regex <- purrr::compose(
   function(x) paste0("^", x),
   function(x) paste(x, collapse = "|^"),

@@ -14,7 +14,8 @@
 #' @importFrom purrr map2_dfc
 #'
 #' @examples
-#' # library(tidyverse)
+#' library(dplyr)
+#' library(purrr)
 #' dat <- data.frame(
 #'   d1 = c("T63023", "X92821", "X99100", "T360x"),
 #'   d2 = c("T65823", "Y030x0", "T17200", "V0100x")
@@ -23,7 +24,11 @@
 #' dat %>% icd_intent_mech(inj_col = c(1, 2), reference = "both")
 #' dat %>% icd_intent_mech(inj_col = c(1, 2), reference = "intent")
 #' dat %>% icd_intent_mech(inj_col = c(1, 2), reference = "mechanism")
+#'
 icd_intent_mech <- function(data, inj_col, reference = c("both", "intent", "mechanism")) {
+
+  requireNamespace("dplyr", quietly = T)
+
   icd10cm_inj <- switch(match.arg(reference), both = icd10cm_intent_mech_regex, intent = icd10cm_intent_regex, mechanism = icd10cm_mech_regex)
 
   list_int_mech <- icd10cm_inj %>% pull(intent_mechanism)

@@ -17,6 +17,9 @@
 #'   icd_drug_opioid(diag_ecode_col = c(2:6)) %>%
 #'   sample_n(10)
 icd_drug_opioid <- function(data, diag_ecode_col) {
+
+  requireNamespace("dplyr", quietly = T)
+
   drugs_icd10cm_ <-
     "(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..[1-4](A|$|\\s)|((T3[679]9|T414|T427|T4[3579]9)[1-4].(A|$|\\s))"
 

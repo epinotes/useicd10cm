@@ -14,6 +14,7 @@ Selected OD ICD 10 CM definitions
 }
 \examples{
 
+library(crayon)
 icd_od_definitions()
 
 }

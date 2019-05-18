@@ -10,9 +10,10 @@
 #' @importFrom purrr compose
 #'
 #' @examples
-#' # library(tidyverse)
+#' library(dplyr)
 #' icd_clean_mech_names(c("Natural/Environmental, Other"))
-icd_clean_mech_names <- compose(
+#'
+icd_clean_mech_names <- purrr::compose(
   # remove repeat "_" and extreme "_"
   function(x) gsub("(_)(?=_*\\1)|^_|_$", "", x, perl = T),
   # not [A-Za-z0-9_] and replace with "_"

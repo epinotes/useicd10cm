@@ -5,10 +5,12 @@
 #'
 #' @examples
 #'
+#' library(crayon)
 #' icd_od_definitions()
 #'
 icd_od_definitions <- function() {
-  library(crayon)
+
+  requireNamespace("crayon", quietly = T)
 
   cat("The regular expression version is provided at the end of each definiton.\n\n" %+%
     blue$underline$bold("\n1. Any drug:\n") %+%

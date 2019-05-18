@@ -16,6 +16,7 @@ collapse the grouped icd10cm as regular expressions with all the "x" not at the 
 transform the ICD-10-CM codes into an operational regular expression.
 }
 \examples{
-# library(tidyverse)
+library(dplyr)
 icd_make_regex(c("X45x2", "Y65xx"))
+
 }

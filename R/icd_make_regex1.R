@@ -10,7 +10,7 @@
 #'
 #' @examples
 #'
-#' library(tidyverse)
+#' library(dplyr)
 #' icd_make_regex1(c("X45x2", "Y65xx"))
 icd_make_regex1 <- purrr::compose(
   function(x) paste0("^", x),
