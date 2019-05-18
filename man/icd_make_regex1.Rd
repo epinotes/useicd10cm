@@ -16,9 +16,7 @@ return the icd10cm as regular expressions with all the "x" not at the beginning 
 transform the ICD-10-CM codes into an operational regular expression.
 }
 \examples{
-to be added
-# library(tidyverse)
+
+library(tidyverse)
 icd_make_regex1(c("X45x2", "Y65xx"))
-
-
 }

@@ -9,13 +9,12 @@
 #' @keywords datasets
 #' @examples
 #' head(icd10cm_inj_regex, 10)
-#'
 "icd10cm_inj_regex"
 
 #' The complete icd10cm injury matrix.
 #'
 #' Dataset of 3,522 rows and 4 variables.
-#'formatted from the original
+#' formatted from the original
 #'
 #' @format Data frame
 #' @source
@@ -25,7 +24,6 @@
 #' @examples
 #' library(dplyr)
 #' sample_n(icd10cm_injury_matrix, 10)
-#'
 "icd10cm_injury_matrix"
 
 #' icd10cm injury matrix by intent only.
@@ -39,7 +37,6 @@
 #' @keywords datasets
 #' @examples
 #' icd10cm_intent_regex
-#'
 "icd10cm_intent_regex"
 
 
@@ -54,7 +51,6 @@
 #' @examples
 #' library(dplyr)
 #' sample_n(icd10cm_mech_regex, 10)
-#'
 "icd10cm_mech_regex"
 
 #' The icd10cm injury matrix by intent and mechanism.
@@ -67,8 +63,6 @@
 #' @keywords datasets
 #' @examples
 #' head(icd10cm_intent_mech_regex, 10)
-#'
-
 "icd10cm_intent_mech_regex"
 
 #' Dataset with icd-10-cm codes.
@@ -81,7 +75,6 @@
 #' @keywords datasets
 #' @examples
 #' icd10cm_data150
-#'
 "icd10cm_data150"
 
 #' icd-10-cm list and descriptions.
@@ -95,6 +88,4 @@
 #' @keywords datasets
 #' @examples
 #' tail(icd10cm_codes_2019_regex)
-#'
 "icd10cm_codes_2019_regex"
-

@@ -4,4 +4,3 @@ icd10cm_codes_2019 <- icd10cm_codes_2019 %>%
   mutate(icd10cm_regex = icd_make_regex1(icd10cm))
 
 devtools::use_data(icd10cm_codes_2019, compress = "xz", overwrite = T)
-

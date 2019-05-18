@@ -16,6 +16,5 @@ Dataset of 143,865 rows and 3 variables.
 }
 \examples{
 tail(icd10cm_codes_2019_regex)
-
 }
 \keyword{datasets}

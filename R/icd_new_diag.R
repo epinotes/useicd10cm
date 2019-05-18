@@ -9,20 +9,26 @@
 #' @return new variable matching the pattern described in the regular expression
 #' @export
 #'
-#' @examples to be added
-
+#' @examples
 #'
+#' library(dplyr)
+#' library(purrr)
+#' icd10cm_data150 %>%
+#'   mutate(hero = icd_new_diag(., expr = "T401.[1-4]", colvec = c(2:6))) %>%
+#'   count(hero)
 icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
-
-  colvec = enquo(colvec)
+  colvec <- enquo(colvec)
   # assign '1' if the regular expression matched
-  f1 = function(x) grepl(expr, x, ignore.case = ignore.case, perl = perl)
-  # any one in the diagnosis field suffices
-  f2 = function(x){sign(rowSums(x, na.rm = TRUE))}
+  f1 <- function(x) grepl(expr, x, ignore.case = ignore.case, perl = perl)
+  # any 1 in the diagnosis field suffices
+  f2 <- function(x) {
+    sign(rowSums(x, na.rm = TRUE))
+  }
 
-  data %>% select(!!colvec) %>%
-    mutate_all(list(~as.character)) %>%
-    map_df(f1) %>%
+  data %>%
+    select(!!colvec) %>%
+    mutate_all(as.character) %>%
+    map_dfr(f1) %>%
     transmute(new_diag = f2(.)) %>%
     unlist()
 }

@@ -16,6 +16,5 @@ Dataset of 5 rows and 2 variables.
 }
 \examples{
 icd10cm_intent_regex
-
 }
 \keyword{datasets}

@@ -17,6 +17,5 @@ grouped by intent and mechanism from original with icd10cm code in regular expre
 }
 \examples{
 head(icd10cm_inj_regex, 10)
-
 }
 \keyword{datasets}

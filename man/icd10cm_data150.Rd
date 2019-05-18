@@ -16,6 +16,5 @@ Dataset of 150 rows and 3 variables.
 }
 \examples{
 icd10cm_data150
-
 }
 \keyword{datasets}

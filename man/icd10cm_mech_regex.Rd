@@ -17,6 +17,5 @@ Dataset of 32 rows and 3 variables.
 \examples{
 library(dplyr)
 sample_n(icd10cm_mech_regex, 10)
-
 }
 \keyword{datasets}

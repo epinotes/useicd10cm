@@ -18,6 +18,5 @@ formatted from the original
 \examples{
 library(dplyr)
 sample_n(icd10cm_injury_matrix, 10)
-
 }
 \keyword{datasets}

@@ -24,6 +24,10 @@ new variable matching the pattern described in the regular expression
 Create a new variable based on pattern in the argument expr
 }
 \examples{
-to be added
 
+library(dplyr)
+library(purrr)
+icd10cm_data150 \%>\%
+  mutate(hero = icd_new_diag(., expr = "T401.[1-4]", colvec = c(2:6))) \%>\%
+  count(hero)
 }

@@ -11,10 +11,11 @@
 #'
 #' @examples
 #'
-#'library(dplyr)
-#'library(purrr)
-#' icd10cm_data150 %>% icd_drug_opioid(diag_ecode_col = c(2:6)) %>% sample_n(10)
-#'
+#' library(dplyr)
+#' library(purrr)
+#' icd10cm_data150 %>%
+#'   icd_drug_opioid(diag_ecode_col = c(2:6)) %>%
+#'   sample_n(10)
 icd_drug_opioid <- function(data, diag_ecode_col) {
   drugs_icd10cm_ <-
     "(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..[1-4](A|$|\\s)|((T3[679]9|T414|T427|T4[3579]9)[1-4].(A|$|\\s))"
@@ -35,31 +36,40 @@ icd_drug_opioid <- function(data, diag_ecode_col) {
   data %>%
     mutate(
       any_drug = icd_new_diag(.,
-                              expr = drugs_icd10cm_,
-                              colvec = diag_ecode_col),
+        expr = drugs_icd10cm_,
+        colvec = diag_ecode_col
+      ),
 
       any_opioid = icd_new_diag(.,
-                                expr = opioid_icd10cm_,
-                                colvec = diag_ecode_col),
+        expr = opioid_icd10cm_,
+        colvec = diag_ecode_col
+      ),
 
       non_heroin_opioid = icd_new_diag(.,
-                                       expr = non_heroin_opioid_icd10cm_,
-                                       colvec = diag_ecode_col),
+        expr = non_heroin_opioid_icd10cm_,
+        colvec = diag_ecode_col
+      ),
 
       heroin = icd_new_diag(.,
-                            expr = heroin_icd10cm_,
-                            colvec = diag_ecode_col),
+        expr = heroin_icd10cm_,
+        colvec = diag_ecode_col
+      ),
 
       stimulant = icd_new_diag(.,
-                            expr = stimulant_icd10cm_,
-                            colvec = diag_ecode_col),
+        expr = stimulant_icd10cm_,
+        colvec = diag_ecode_col
+      ),
       cocaine = icd_new_diag(.,
-                               expr = cocaine_icd10cm_,
-                               colvec = diag_ecode_col),
+        expr = cocaine_icd10cm_,
+        colvec = diag_ecode_col
+      ),
       non_cocaine_stimulant = icd_new_diag(.,
-                               expr = non_cocaine_stimulant_icd10cm_,
-                               colvec = diag_ecode_col)
+        expr = non_cocaine_stimulant_icd10cm_,
+        colvec = diag_ecode_col
+      )
     ) %>%
-    mutate(non_heroin_opioid = ifelse(heroin == 1, 0, non_heroin_opioid),
-           non_cocaine_stimulant = ifelse(cocaine == 1, 0, non_cocaine_stimulant))
+    mutate(
+      non_heroin_opioid = ifelse(heroin == 1, 0, non_heroin_opioid),
+      non_cocaine_stimulant = ifelse(cocaine == 1, 0, non_cocaine_stimulant)
+    )
 }
