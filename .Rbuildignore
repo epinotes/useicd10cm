@@ -4,3 +4,6 @@
 ^useicd10cm.*\.tar\.gz$
 ^useicd10cm.*\.tgz$
 ^cran-comments\.md$
+^useicd10cm \.Rcheck$
+^useicd10cm .*\.tar\.gz$
+^useicd10cm .*\.tgz$
