@@ -21,19 +21,19 @@ icd_drug_opioid <- function(data, diag_ecode_col) {
   requireNamespace("dplyr", quietly = T)
 
   drugs_icd10cm_ <-
-    "(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..[1-4](A|$|\\s)|((T3[679]9|T414|T427|T4[3579]9)[1-4].(A|$|\\s))"
+    "(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..[1-4](A|$)|((T3[679]9|T414|T427|T4[3579]9)[1-4].(A|$))"
 
-  opioid_icd10cm_ <- "(T40[0-4].|T406[09])[1-4](A|$|\\s)"
+  opioid_icd10cm_ <- "(T40[0-4].|T406[09])[1-4](A|$)"
 
-  non_heroin_opioid_icd10cm_ <- "(T40[0234].|T406[09])[1-4](A|$|\\s)"
+  non_heroin_opioid_icd10cm_ <- "(T40[0234].|T406[09])[1-4](A|$)"
 
-  heroin_icd10cm_ <- "T401.[1-4](A|$|\\s)"
+  heroin_icd10cm_ <- "T401.[1-4](A|$)"
 
-  stimulant_icd10cm_ <- "((T405.|T436[0-49])[1-4])(A|$|\\s)"
+  stimulant_icd10cm_ <- "((T405.|T436[0-49])[1-4])(A|$)"
 
-  cocaine_icd10cm_ <- "T405.[1-4](A|$|\\s)"
+  cocaine_icd10cm_ <- "T405.[1-4](A|$)"
 
-  non_cocaine_stimulant_icd10cm_ <- "436[0-49][1-4](A|$|\\s)"
+  non_cocaine_stimulant_icd10cm_ <- "436[0-49][1-4](A|$)"
 
 
   data %>%
