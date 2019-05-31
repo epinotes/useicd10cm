@@ -15,6 +15,6 @@ Selected injury ICD 10 CM regular expressions
 \examples{
 
 icd_injury_regex()
-grep("^icd10cm.+_$", objects(), value = T)
+grep("^icd10cm.+_$", objects(), value = TRUE)
 
 }

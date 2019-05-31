@@ -6,7 +6,7 @@
 #' @examples
 #'
 #' icd_injury_regex()
-#' grep("^icd10cm.+_$", objects(), value = T)
+#' grep("^icd10cm.+_$", objects(), value = TRUE)
 #'
 icd_injury_regex <- function() {
   icd10cm_any_drug_ <<- "(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..[1-4](A|$)|((T3[679]9|T414|T427|T4[3579]9)[1-4].(A|$))"
