@@ -22,9 +22,9 @@ icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
 
   colvec <- enquo(colvec)
   # assign '1' if the regular expression matched
-  f1 <- function(x) as.numeric(grepl(expr, x, ignore.case = ignore.case, perl = perl))
+  f1 <- function(x) grepl(expr, x, ignore.case = ignore.case, perl = perl)
   # any 1 in the diagnosis field suffices
-  f2 <- function(x) {
+  f2 <- function(x){
     sign(rowSums(x, na.rm = TRUE))
   }
 
@@ -35,3 +35,4 @@ icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
     transmute(new_diag = f2(.)) %>%
     flatten_dbl()
 }
+
