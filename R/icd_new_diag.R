@@ -28,9 +28,10 @@ icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
     sign(rowSums(x, na.rm = TRUE))
   }
 
-  data %>%
+  data %>% as_tibble() %>%
     select(!!colvec) %>%
     mutate_all(as.character) %>%
     purrr::map_dfr(f1) %>%
-    transmute(new_diag = unlist(f2(.)))
+    transmute(new_diag = f2(.)) %>%
+    flatten_dbl()
 }

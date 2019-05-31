@@ -33,11 +33,12 @@ icd_new_var <- function(data, expr, colvec, var_name = "new_var", ignore.case = 
     sign(rowSums(x, na.rm = TRUE))
   }
 
-  new_col <- data %>%
+  new_col <- data %>% as_tibble() %>%
     select(!!colvec) %>%
     mutate_all(as.character) %>%
     purrr::map_dfr(f1) %>%
-    transmute(!!var_name := unlist(f2(.)))
+    transmute(!!var_name := f2(.)) %>%
+    flatten_dbl()
 
   data %>% bind_cols(new_col)
 
