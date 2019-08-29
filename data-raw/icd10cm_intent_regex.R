@@ -6,4 +6,4 @@ icd10cm_intent_regex <- icd10cm_inj_matrix %>%
 icd10cm_intent_regex <- icd10cm_intent_regex %>%
   mutate(intent_mechanism = intent)
 
-devtools::use_data(icd10cm_intent_regex, compress = "xz", overwrite = T)
+usethis::use_data(icd10cm_intent_regex, compress = "xz", overwrite = T)

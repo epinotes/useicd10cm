@@ -9,4 +9,7 @@ icd10cm_intent_mech_regex <- icd10cm_intent_mech_regex %>%
 icd10cm_intent_mech_regex <- icd10cm_intent_mech_regex %>%
   mutate(intent_mechanism = paste(intent, mechanism, sep = "_"))
 
-devtools::use_data(icd10cm_intent_mech_regex, compress = "xz", overwrite = T)
+icd10cm_intent_mech_regex <- icd10cm_intent_mech_regex %>%
+  ungroup()
+
+usethis::use_data(icd10cm_intent_mech_regex, compress = "xz", overwrite = T)

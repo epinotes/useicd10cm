@@ -6,4 +6,4 @@ icd10cm_mech_regex <- icd10cm_mech_regex %>%
   mutate(intent_mechanism = icd_clean_mech_names(mechanism))
 
 
-devtools::use_data(icd10cm_mech_regex, compress = "xz", overwrite = T)
+usethis::use_data(icd10cm_mech_regex, compress = "xz", overwrite = T)
