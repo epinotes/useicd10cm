@@ -7,3 +7,6 @@
 ^useicd10cm \.Rcheck$
 ^useicd10cm .*\.tar\.gz$
 ^useicd10cm .*\.tgz$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
