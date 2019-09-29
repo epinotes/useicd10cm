@@ -101,3 +101,12 @@
 #' @examples
 #' tail(icd10cm_codes_2019_regex)
 "icd10cm_codes_2019_regex"
+
+#' @format Data frame
+#' @source
+#'   US Census Bureau Through the the R package"tidycensus"
+#' @keywords datasets
+#' @examples
+#' head(wa_fips_codes)
+#'
+"wa_fips_codes"
