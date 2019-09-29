@@ -102,6 +102,11 @@
 #' tail(icd10cm_codes_2019_regex)
 "icd10cm_codes_2019_regex"
 
+#' County FIPS codes for WA State.
+#'
+#' Dataset of 39 rows and 7 variables.
+#'
+#'
 #' @format Data frame
 #' @source
 #'   US Census Bureau Through the the R package"tidycensus"
