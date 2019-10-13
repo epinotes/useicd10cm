@@ -3,7 +3,7 @@
 export(icd_age_group10)
 export(icd_clean_mech_names)
 export(icd_drug_opioid)
-export(icd_drug_opioid_isf)
+export(icd_drug_opioid_ish)
 export(icd_drug_opioid_uu)
 export(icd_first_valid)
 export(icd_first_valid_index)

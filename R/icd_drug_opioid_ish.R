@@ -1,12 +1,12 @@
 #' Find intentional self-harm drug types from ICD-10-CM.
 #'
-#' Find any drug, selected opioids and stimulants
+#' Find any drug, selected opioids and stimulants with intentional self-harm
 #'
 #' @param data input data
 #' @param diag_ecode_col column indices
 #'
-#' @return any_drug_isf, any_opioid_isf, non_heroin_opioid_isf,
-#'   heroin_isf, stimulant_isf, cocaine_isf, stimulant_not_cocaine_isf
+#' @return any_drug_ish, any_opioid_ish, non_heroin_opioid_ish,
+#'   heroin_ish, stimulant_ish, cocaine_ish, stimulant_not_cocaine_ish
 #' @export
 #'
 #' @examples
@@ -14,65 +14,65 @@
 #' library(dplyr)
 #' library(purrr)
 #' icd10cm_data150 %>%
-#'   icd_drug_opioid(diag_ecode_col = c(2:6)) %>%
+#'   icd_drug_opioid_ish(diag_ecode_col = c(2:6)) %>%
 #'   sample_n(10)
-icd_drug_opioid_isf <- function(data, diag_ecode_col) {
+icd_drug_opioid_ish <- function(data, diag_ecode_col) {
 
   requireNamespace("dplyr", quietly = T)
 
-  drugs_icd10cm_isf_ <-
+  drugs_icd10cm_ish_ <-
     "(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..[2](A|$)|((T3[679]9|T414|T427|T4[3579]9)[2].(A|$))"
 
-  opioid_icd10cm_isf_ <- "(T40[0-4].|T406[09])[2](A|$)"
+  opioid_icd10cm_ish_ <- "(T40[0-4].|T406[09])[2](A|$)"
 
-  non_heroin_opioid_icd10cm_isf_ <- "(T40[0234].|T406[09])[2](A|$)"
+  non_heroin_opioid_icd10cm_ish_ <- "(T40[0234].|T406[09])[2](A|$)"
 
-  heroin_icd10cm_isf_ <- "T401.[2](A|$)"
+  heroin_icd10cm_ish_ <- "T401.[2](A|$)"
 
-  stimulant_icd10cm_isf_ <- "((T405.|T436[0-49])[2])(A|$)"
+  stimulant_icd10cm_ish_ <- "((T405.|T436[0-49])[2])(A|$)"
 
-  cocaine_icd10cm_isf_ <- "T405.[2](A|$)"
+  cocaine_icd10cm_ish_ <- "T405.[2](A|$)"
 
-  non_cocaine_stimulant_icd10cm_isf_ <- "436[0-49][2](A|$)"
+  non_cocaine_stimulant_icd10cm_ish_ <- "436[0-49][2](A|$)"
 
 
   data %>%
     mutate(
-      any_drug_isf = icd_new_diag(.,
-                              expr = drugs_icd10cm_isf_,
+      any_drug_ish = icd_new_diag(.,
+                              expr = drugs_icd10cm_ish_,
                               colvec = diag_ecode_col
       ),
 
-      any_opioid_isf = icd_new_diag(.,
-                                expr = opioid_icd10cm_isf_,
+      any_opioid_ish = icd_new_diag(.,
+                                expr = opioid_icd10cm_ish_,
                                 colvec = diag_ecode_col
       ),
 
-      non_heroin_opioid_isf = icd_new_diag(.,
-                                       expr = non_heroin_opioid_icd10cm_isf_,
+      non_heroin_opioid_ish = icd_new_diag(.,
+                                       expr = non_heroin_opioid_icd10cm_ish_,
                                        colvec = diag_ecode_col
       ),
 
-      heroin_isf = icd_new_diag(.,
-                            expr = heroin_icd10cm_isf_,
+      heroin_ish = icd_new_diag(.,
+                            expr = heroin_icd10cm_ish_,
                             colvec = diag_ecode_col
       ),
 
-      stimulant_isf = icd_new_diag(.,
-                               expr = stimulant_icd10cm_isf_,
+      stimulant_ish = icd_new_diag(.,
+                               expr = stimulant_icd10cm_ish_,
                                colvec = diag_ecode_col
       ),
-      cocaine_isf = icd_new_diag(.,
-                             expr = cocaine_icd10cm_isf_,
+      cocaine_ish = icd_new_diag(.,
+                             expr = cocaine_icd10cm_ish_,
                              colvec = diag_ecode_col
       ),
-      non_cocaine_stimulant_isf = icd_new_diag(.,
-                                           expr = non_cocaine_stimulant_icd10cm_isf_,
+      non_cocaine_stimulant_ish = icd_new_diag(.,
+                                           expr = non_cocaine_stimulant_icd10cm_ish_,
                                            colvec = diag_ecode_col
       )
     ) %>%
     mutate(
-      non_heroin_opioid_isf = ifelse(heroin_isf == 1, 0, non_heroin_opioid_isf),
-      non_cocaine_stimulant_isf = ifelse(cocaine_isf == 1, 0, non_cocaine_stimulant_isf)
+      non_heroin_opioid_ish = ifelse(heroin_ish == 1, 0, non_heroin_opioid_ish),
+      non_cocaine_stimulant_ish = ifelse(cocaine_ish == 1, 0, non_cocaine_stimulant_ish)
     )
 }
