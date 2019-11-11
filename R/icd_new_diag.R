@@ -20,7 +20,7 @@ icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
 
   requireNamespace("dplyr", quietly = T)
 
-  colvec <- enquo(colvec)
+  # colvec <- enquo(colvec)
   # assign '1' if the regular expression matched
   f1 <- function(x) grepl(expr, x, ignore.case = ignore.case, perl = perl)
   # any 1 in the diagnosis field suffices
@@ -29,7 +29,7 @@ icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
   }
 
   data %>% as_tibble() %>%
-    select(!!colvec) %>%
+    select({{colvec}}) %>%
     mutate_all(as.character) %>%
     purrr::map_dfr(f1) %>%
     transmute(new_diag = f2(.)) %>%

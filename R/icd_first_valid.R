@@ -21,11 +21,11 @@ icd_first_valid <- function(data, colvec, pattern) {
   requireNamespace("dplyr", quietly = T)
   requireNamespace("purrr", quietly = T)
 
-  colvec <- enquo(colvec)
+  # colvec <- enquo(colvec)
   f0 <- function(x) grepl(pattern = pattern, x, ignore.case = T, perl = T)
   f1 <- function(x) detect(x, f0)
   data %>%
-    select(!!colvec) %>%
+    select({{colvec}}) %>%
     map_dfr(as.character) %>%
     transpose() %>%
     map(f1) %>%
