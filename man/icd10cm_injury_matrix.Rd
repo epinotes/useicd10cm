@@ -12,7 +12,7 @@
 icd10cm_injury_matrix
 }
 \description{
-Dataset of 3,522 rows and 4 variables.
+Dataset of 3,602 rows and 5 variables.
 formatted from the original
 }
 \examples{

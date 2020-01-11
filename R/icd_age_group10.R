@@ -7,22 +7,19 @@
 #' @return return an additional age_group10 fields of ten age intervals
 #'
 #' @export
+#' @importFrom classInt classIntervals findCols
 #'
 #' @examples
-#'
 #' library(dplyr)
 #' library(classInt)
 #' set.seed(10)
-#' dat <- tibble(age = sample(c(1:100, NA), 110, replace = T))
-#' dat <- dat %>% add_age_group10(age = age)
+#' dat <- tibble(age = sample(c(1:100, NA), 110, replace = TRUE))
+#' dat <- dat %>% icd_age_group10(age = age)
 #' dat
 #'
 
 icd_age_group10 <- function(data, age){
-  suppressWarnings(suppressMessages(require(classInt)))
-  suppressWarnings(suppressMessages(require(dplyr)))
-  suppressWarnings(suppressMessages(require(forcats)))
-  # age <- enquo(age)
+
   age <- data %>% pull({{age}}) %>% unlist()
   age_max <- ifelse(max(age, na.rm = T) > 84, max(age, na.rm = T), 120)
   agecut10 <- c(0, 10, 14, 24, 34, 44, 54, 64, 74, 84, age_max)
@@ -30,7 +27,7 @@ icd_age_group10 <- function(data, age){
                           fixedBreaks = agecut10, intervalClosure = "right")
   agegrp10 <- as.factor(findCols(int10))
   data %>% mutate(agegrp10 = agegrp10,
-                  age_group10 = fct_recode(agegrp10,
+                  age_group10 = forcats::fct_recode(agegrp10,
                                            `0-10` = "1",
                                            `11-14` = "2",
                                            `15-24` = "3",
@@ -41,6 +38,6 @@ icd_age_group10 <- function(data, age){
                                            `65-74` = "8",
                                            `75-84` = "9",
                                            `85+` = "10")) %>%
-    mutate(age_group10 = fct_explicit_na(age_group10)) %>%
+    mutate(age_group10 = forcats::fct_explicit_na(age_group10)) %>%
     select(-agegrp10)
 }

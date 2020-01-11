@@ -1,5 +1,5 @@
 
-#' Dataset of 93 rows and 3 variables.
+#' Dataset of 92 rows and 3 variables.
 #' grouped by intent and mechanism from original with icd10cm code in regular expressions
 #'
 #' @format Data frame
@@ -11,7 +11,7 @@
 
 #' The complete icd10cm injury matrix.
 #'
-#' Dataset of 3,522 rows and 4 variables.
+#' Dataset of 3,602 rows and 5 variables.
 #' formatted from the original
 #'
 #' @format Data frame
@@ -40,7 +40,7 @@
 
 #' icd10cm injury matrix by mechanism only.
 #'
-#' Dataset of 32 rows and 3 variables.
+#' Dataset of 33 rows and 3 variables.
 #'
 #'
 #' @format Data frame
@@ -77,30 +77,18 @@
 
 #' icd-10-cm list and descriptions original.
 #'
-#' Dataset of 143,865 rows and 2 variables.
+#' Dataset of 71,932 rows and 3 variables.
 #'
 #'
 #' @format Data frame
 #' @source
-#'   \url{https://www.cdc.gov/nchs/icd/icd10cm.htm}
+#'   \url{https://www.cms.gov/Medicare/Coding/ICD10/2019-ICD-10-CM}
 #' @keywords datasets
 #' @examples
 #' tail(icd10cm_codes_2019)
 
 "icd10cm_codes_2019"
 
-#' icd-10-cm list and descriptions.
-#'
-#' Dataset of 143,865 rows and 3 variables.
-#'
-#'
-#' @format Data frame
-#' @source
-#'   \url{https://www.cdc.gov/nchs/icd/icd10cm.htm}
-#' @keywords datasets
-#' @examples
-#' tail(icd10cm_codes_2019_regex)
-"icd10cm_codes_2019_regex"
 
 #' County FIPS codes for WA State.
 #'

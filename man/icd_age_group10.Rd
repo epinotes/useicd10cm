@@ -18,12 +18,11 @@ return an additional age_group10 fields of ten age intervals
 Cut age into ten age groups
 }
 \examples{
-
 library(dplyr)
 library(classInt)
 set.seed(10)
-dat <- tibble(age = sample(c(1:100, NA), 110, replace = T))
-dat <- dat \%>\% add_age_group10(age = age)
+dat <- tibble(age = sample(c(1:100, NA), 110, replace = TRUE))
+dat <- dat \%>\% icd_age_group10(age = age)
 dat
 
 }

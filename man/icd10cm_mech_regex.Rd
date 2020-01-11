@@ -12,7 +12,7 @@ Grouped from icd10cm_inj_regex.
 icd10cm_mech_regex
 }
 \description{
-Dataset of 32 rows and 3 variables.
+Dataset of 33 rows and 3 variables.
 }
 \examples{
 library(dplyr)

@@ -1,6 +1,7 @@
-icd10cm_intent_regex <- icd10cm_inj_matrix %>%
+icd10cm_intent_regex <- readr::read_rds("injury_matrix_all.rds") %>%
   group_by(intent) %>%
-  summarise(icd10cm_regex = make_regex(icd10cm))
+  summarise_at(vars(icd10cm_regex), icd_make_regex) %>%
+  ungroup
 
 
 icd10cm_intent_regex <- icd10cm_intent_regex %>%

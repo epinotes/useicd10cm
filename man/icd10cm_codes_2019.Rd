@@ -6,13 +6,13 @@
 \title{icd-10-cm list and descriptions original.}
 \format{Data frame}
 \source{
-\url{https://www.cdc.gov/nchs/icd/icd10cm.htm}
+\url{https://www.cms.gov/Medicare/Coding/ICD10/2019-ICD-10-CM}
 }
 \usage{
 icd10cm_codes_2019
 }
 \description{
-Dataset of 143,865 rows and 2 variables.
+Dataset of 71,932 rows and 3 variables.
 }
 \examples{
 tail(icd10cm_codes_2019)
