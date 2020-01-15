@@ -55,5 +55,5 @@ icd_od_definitions <- function() {
       AND a 6th character of 1,2,3, or 4 \n
       AND a 7th character of A or missing\n
       Then exclude any cases of cocaine as defined above\n" %+%
-    green("\n436[0-49][1-4](A|$)\n"))
+    green("\nT436[0-49][1-4](A|$)\n"))
 }

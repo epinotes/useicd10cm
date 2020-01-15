@@ -1,6 +1,6 @@
 
 wa_fips_codes <- tidycensus::fips_codes %>%
-  as_tibble %>%
+  as.data.frame %>%
   filter(state == "WA") %>%
   mutate(county = gsub(" County", "", county),
          county_fips_code = paste0(state_code, county_code),
