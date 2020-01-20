@@ -12,7 +12,7 @@ modified from the injury matrix "icd10cm_injury_matrix"
 icd10cm_intent_mech_regex
 }
 \description{
-Dataset of 93 rows and 4 variables.
+Dataset of 92 rows and 4 variables.
 grouped by intent and mechanism from original with icd10cm code in regular expressions
 }
 \examples{

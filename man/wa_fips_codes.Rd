@@ -6,7 +6,7 @@
 \title{County FIPS codes for WA State.}
 \format{Data frame}
 \source{
-US Census Bureau Through the the R package"tidycensus"
+US Census Bureau Through the R package"tidycensus"
 }
 \usage{
 wa_fips_codes

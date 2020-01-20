@@ -40,7 +40,7 @@
 
 #' icd10cm injury matrix by mechanism only.
 #'
-#' Dataset of 33 rows and 3 variables.
+#' Dataset of 31 rows and 3 variables.
 #'
 #'
 #' @format Data frame
@@ -53,7 +53,7 @@
 
 #' The icd10cm injury matrix by intent and mechanism.
 #'
-#' Dataset of 93 rows and 4 variables.
+#' Dataset of 92 rows and 4 variables.
 #' grouped by intent and mechanism from original with icd10cm code in regular expressions
 #'
 #' @format Data frame
@@ -97,7 +97,7 @@
 #'
 #' @format Data frame
 #' @source
-#'   US Census Bureau Through the the R package"tidycensus"
+#'   US Census Bureau Through the R package"tidycensus"
 #' @keywords datasets
 #' @examples
 #' head(wa_fips_codes)
