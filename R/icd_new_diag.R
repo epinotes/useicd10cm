@@ -8,11 +8,14 @@
 #'
 #' @return new variable matching the pattern described in the regular expression
 #' @export
+#' @importFrom furrr future_map_dfr
+#' @importFrom purrr flatten_dbl
 #'
 #' @examples
 #'
 #' library(dplyr)
-#' library(purrr)
+#' library(furrr)
+#' # plan(multiprocess) # To parallelize
 #' icd10cm_data150 %>%
 #'   mutate(hero = icd_new_diag(., expr = "T401.[1-4]", colvec = c(2:6))) %>%
 #'   count(hero)
@@ -31,7 +34,7 @@ icd_new_diag <- function(data, expr, colvec, ignore.case = T, perl = T) {
   data %>% as_tibble() %>%
     select({{colvec}}) %>%
     mutate_all(as.character) %>%
-    purrr::map_dfr(f1) %>%
+    furrr::future_map_dfr(f1) %>%
     transmute(new_diag = f2(.)) %>%
     flatten_dbl()
 }

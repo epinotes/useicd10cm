@@ -9,12 +9,15 @@
 #' @return return the vector of the matched characters with NA for a no match
 #'
 #' @export
+#' @importFrom purrr transpose detect
+#' @importFrom furrr future_map future_map_if
 #'
 #' @examples
 #'
 #' dat <- data.frame(x1 = letters[1:3], x2 = c("d", "a", "e"))
 #' library(dplyr)
-#' library(purrr)
+#' library(furrr)
+#' # plan(multiprocess)
 #' dat %>% mutate(x3 = icd_first_valid(., colvec = c(1:2), pattern = "a"))
 icd_first_valid <- function(data, colvec, pattern) {
 
@@ -26,9 +29,9 @@ icd_first_valid <- function(data, colvec, pattern) {
   f1 <- function(x) detect(x, f0)
   data %>%
     select({{colvec}}) %>%
-    map_dfr(as.character) %>%
+    future_map_dfr(as.character) %>%
     transpose() %>%
-    map(f1) %>%
-    map_if(is.null, ~NA_character_) %>%
+    future_map(f1) %>%
+    future_map_if(is.null, ~NA_character_) %>%
     unlist()
 }

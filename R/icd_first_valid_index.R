@@ -6,12 +6,16 @@
 #'
 #' @return return the vector of the indices of the matches with 0 for no match
 #' @export
+#' @importFrom purrr transpose detect_index
+#' @importFrom furrr future_map_dfr future_map_int
 #'
 #' @examples
 #'
 #' dat <- data.frame(x1 = letters[1:3], x2 = c("d", "a", "e"))
 #' library(dplyr)
 #' library(purrr)
+#' library(furrr)
+#' # plan(multiprocess) # To parallelize
 #' dat %>% mutate(x3 = icd_first_valid_index(., colvec = c(1:2), pattern = "a"))
 #'
 icd_first_valid_index <- function(data, colvec, pattern) {
@@ -23,7 +27,7 @@ icd_first_valid_index <- function(data, colvec, pattern) {
   f1 <- function(x) purrr::detect_index(x, f0)
   data %>%
     select(!!colvec) %>%
-    purrr::map_dfr(as.character) %>%
+    furrr::future_map_dfr(as.character) %>%
     purrr::transpose() %>%
-    purrr::map_int(f1)
+    furrr::future_map_int(f1)
 }

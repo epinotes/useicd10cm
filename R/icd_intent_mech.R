@@ -11,11 +11,12 @@
 #' @return return the input with additional variables (93 intent_mechanism combinations, five intent variables, or 32 mechanism variable depending on the reference choice
 #'
 #' @export
-#' @importFrom purrr map2_dfc
+#' @importFrom furrr future_map2_dfc
 #'
 #' @examples
 #' library(dplyr)
-#' library(purrr)
+#' library(furrr)
+#' # plan(multiprocess)
 #' dat <- data.frame(
 #'   d1 = c("T63023", "X92821", "X99100", "T360x"),
 #'   d2 = c("T65823", "Y030x0", "T17200", "V0100x")
@@ -41,7 +42,7 @@ icd_intent_mech <- function(data, inj_col, reference = c("both", "intent", "mech
       select(!!var_name)
   }
 
-  dat2 <- map2_dfc(.x = list_int_mech, .y = list_expr, ~ f_im(data = data, inj_col = inj_col, var_name = .x, expr = .y))
+  dat2 <- future_map2_dfc(.x = list_int_mech, .y = list_expr, ~ f_im(data = data, inj_col = inj_col, var_name = .x, expr = .y))
 
   data %>% bind_cols(dat2)
 }

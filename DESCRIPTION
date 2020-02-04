@@ -21,4 +21,5 @@ Imports:
   purrr,  
   fuzzyjoin,
   classInt,  
-  forcats
+  forcats,
+  furrr
