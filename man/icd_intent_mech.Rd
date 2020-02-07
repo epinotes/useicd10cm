@@ -25,8 +25,7 @@ return the input with additional variables (93 intent_mechanism combinations, fi
 }
 \examples{
 library(dplyr)
-library(furrr)
-# plan(multiprocess)
+library(purrr)
 dat <- data.frame(
   d1 = c("T63023", "X92821", "X99100", "T360x"),
   d2 = c("T65823", "Y030x0", "T17200", "V0100x")

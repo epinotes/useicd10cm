@@ -26,8 +26,7 @@ Create a new variable based on pattern in the argument expr
 \examples{
 
 library(dplyr)
-library(furrr)
-# plan(multiprocess) # To parallelize
+library(purrr)
 icd10cm_data150 \%>\%
   mutate(hero = icd_new_diag(., expr = "T401.[1-4]", colvec = c(2:6))) \%>\%
   count(hero)

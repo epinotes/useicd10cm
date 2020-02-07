@@ -23,7 +23,6 @@ a row operation that will form a vector of the first match of a pattern.
 
 dat <- data.frame(x1 = letters[1:3], x2 = c("d", "a", "e"))
 library(dplyr)
-library(furrr)
-# plan(multiprocess)
+library(purrr)
 dat \%>\% mutate(x3 = icd_first_valid(., colvec = c(1:2), pattern = "a"))
 }

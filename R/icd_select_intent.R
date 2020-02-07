@@ -6,12 +6,11 @@
 #'
 #' @return return the input with additional intent variables
 #' @export
-#' @importFrom furrr future_map2_dfc
+#' @importFrom purrr map2_dfc
 #'
 #' @examples
 #' library(dplyr)
-#' library(furrr)
-#' # plan(multiprocess) # to parallelize the process
+#' library(purrr)
 #' dat <- data.frame(
 #'   d1 = c("T63023", "X92821", "X99100", "T360x"),
 #'   d2 = c("T65823", "Y030x0", "T17200", "V0100x")
@@ -30,7 +29,7 @@ icd_select_intent <- function(data, inj_col, ...) {
       keywd <- ""
     }
     else {
-      keywd <- paste(list(...), collapse="|")
+      keywd <- paste(list(...), collapse = "|")
     }
     keywd
   }
@@ -54,7 +53,7 @@ icd_select_intent <- function(data, inj_col, ...) {
 
   # add the new fields to the original data
 
-  dat2 <- future_map2_dfc(.x = list_int_mech, .y = list_expr, ~ add_field_names(data = data, inj_col = inj_col, var_name = .x, expr = .y))
+  dat2 <- purrr::map2_dfc(.x = list_int_mech, .y = list_expr, ~ add_field_names(data = data, inj_col = inj_col, var_name = .x, expr = .y))
 
   data %>% bind_cols(dat2)
 }
