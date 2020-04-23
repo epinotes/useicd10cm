@@ -21,7 +21,7 @@ icd_injury_regex <- function() {
 
   icd10cm_cocaine_ <<- "T405.[1-4](A|$)"
 
-  icd10cm_non_cocaine_stimulant_ <<- "436[0-49][1-4](A|$)"
+  icd10cm_non_cocaine_stimulant_ <<- "T436[0-49][1-4](A|$)"
 
   icd10cm_drowning_ <<- "(T751..|W16[49]1.|(?!W16[49])W16..1|W22041|(V9[02]|W6[5-9]|W7[0-4]|X71|X92|Y21)...)(A|$)"
 

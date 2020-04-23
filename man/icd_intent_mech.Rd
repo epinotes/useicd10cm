@@ -4,8 +4,7 @@
 \alias{icd_intent_mech}
 \title{Add intent and mechanism combined fields for injury ICD-10-CM.}
 \usage{
-icd_intent_mech(data, inj_col, reference = c("both", "intent",
-  "mechanism"))
+icd_intent_mech(data, inj_col, reference = c("both", "intent", "mechanism"))
 }
 \arguments{
 \item{data}{input data}

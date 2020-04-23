@@ -33,7 +33,7 @@ icd_drug_opioid <- function(data, diag_ecode_col) {
 
   cocaine_icd10cm_ <- "T405.[1-4](A|$)"
 
-  non_cocaine_stimulant_icd10cm_ <- "436[0-49][1-4](A|$)"
+  non_cocaine_stimulant_icd10cm_ <- "T436[0-49][1-4](A|$)"
 
 
   data %>%
