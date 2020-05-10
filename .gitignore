@@ -12,3 +12,4 @@ useicd10cm *.tar.gz
 useicd10cm *.tgz
 *.rds
 docs
+misc_exclude.R
