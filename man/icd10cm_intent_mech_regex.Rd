@@ -4,7 +4,9 @@
 \name{icd10cm_intent_mech_regex}
 \alias{icd10cm_intent_mech_regex}
 \title{The icd10cm injury matrix by intent and mechanism.}
-\format{Data frame}
+\format{
+Data frame
+}
 \source{
 modified from the injury matrix "icd10cm_injury_matrix"
 }

@@ -4,7 +4,9 @@
 \name{wa_fips_codes}
 \alias{wa_fips_codes}
 \title{County FIPS codes for WA State.}
-\format{Data frame}
+\format{
+Data frame
+}
 \source{
 US Census Bureau Through the R package"tidycensus"
 }

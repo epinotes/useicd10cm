@@ -4,7 +4,9 @@
 \name{icd10cm_codes_2019}
 \alias{icd10cm_codes_2019}
 \title{icd-10-cm list and descriptions original.}
-\format{Data frame}
+\format{
+Data frame
+}
 \source{
 \url{https://www.cms.gov/Medicare/Coding/ICD10/2019-ICD-10-CM}
 }

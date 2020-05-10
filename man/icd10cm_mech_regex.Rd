@@ -4,7 +4,9 @@
 \name{icd10cm_mech_regex}
 \alias{icd10cm_mech_regex}
 \title{icd10cm injury matrix by mechanism only.}
-\format{Data frame}
+\format{
+Data frame
+}
 \source{
 Grouped from icd10cm_inj_regex.
 }

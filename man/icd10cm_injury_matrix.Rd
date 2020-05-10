@@ -4,7 +4,9 @@
 \name{icd10cm_injury_matrix}
 \alias{icd10cm_injury_matrix}
 \title{The complete icd10cm injury matrix.}
-\format{Data frame}
+\format{
+Data frame
+}
 \source{
 \url{https://www.cdc.gov/injury/wisqars/dataandstats.html}
 }
