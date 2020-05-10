@@ -3,7 +3,7 @@ Type: Package
 Title: functions and data for the use of ICD-10-CM codes
 Version: 0.2.0
 Author: Mamadou Ndiaye  
-Maintainer: The package maintainer <epinotes@gmail.com>
+Maintainer: Mamadou Ndiaye <epinotes@gmail.com>
 Description: Functions and data for the implementation of ICD-10-CM in injury epidemiology including overdose
 License: MIT + file LICENSE  
 Encoding: UTF-8
