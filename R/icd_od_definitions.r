@@ -6,7 +6,7 @@
 #' @examples
 #'
 #' library(crayon)
-#' icd_od_definitions()
+#' icd_od_definitions
 #'
 icd_od_definitions <- function() {
 
