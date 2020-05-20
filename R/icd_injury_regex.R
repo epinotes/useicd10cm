@@ -5,7 +5,7 @@
 #'
 #' @examples
 #'
-#' icd_injury_regex
+#' icd_injury_regex()
 #' grep("^icd10cm.+_$", objects(), value = TRUE)
 #'
 icd_injury_regex <- function() {
