@@ -75,19 +75,21 @@
 #' icd10cm_data150
 "icd10cm_data150"
 
+
 #' icd-10-cm list and descriptions original.
 #'
-#' Dataset of 71,932 rows and 3 variables.
+#' Dataset of 72,616 rows and 3 variables.
 #'
 #'
 #' @format Data frame
 #' @source
-#'   \url{https://www.cms.gov/Medicare/Coding/ICD10/2019-ICD-10-CM}
+#'   \url{https://www.cms.gov/medicare/icd-10/2021-icd-10-cm}
 #' @keywords datasets
 #' @examples
-#' tail(icd10cm_codes_2019)
+#' tail(icd10cm_codes_2021)
 
-"icd10cm_codes_2019"
+"icd10cm_codes_regex"
+
 
 
 #' County FIPS codes for WA State.
