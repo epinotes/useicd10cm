@@ -1,4 +1,5 @@
-
+#' icd10cm injury matrix. group by intent and mechanism
+#'
 #' Dataset of 92 rows and 3 variables.
 #' grouped by intent and mechanism from original with icd10cm code in regular expressions
 #'
@@ -75,7 +76,6 @@
 #' icd10cm_data150
 "icd10cm_data150"
 
-
 #' icd-10-cm list and descriptions original.
 #'
 #' Dataset of 72,616 rows and 3 variables.
@@ -86,10 +86,38 @@
 #'   \url{https://www.cms.gov/medicare/icd-10/2021-icd-10-cm}
 #' @keywords datasets
 #' @examples
-#' tail(icd10cm_codes_2021)
+#' tail(icd10cm_codes_regex)
 
 "icd10cm_codes_regex"
 
+#' Major Diagnostic Categories (MDC), diagnosis-related group (DRG), and ICD-10-CM .
+#'
+#' Dataset of 3594355 rows and 9 variables.
+#'
+#'
+#' @format Data frame
+#' @source
+#'   \url{https://www.cms.gov/icd10m/version39-fullcode-cms/fullcode_cms/P0001.html}
+#' @keywords datasets
+#' @examples
+#' tail(icd10cm_mdc_drg_regex)
+
+"icd10cm_mdc_drg_regex"
+
+
+#' Major Diagnostic Categories (MDC) and ICD-10-CM .
+#'
+#' Dataset of 65696 rows and 4 variables.
+#'
+#'
+#' @format Data frame
+#' @source
+#'   \url{https://www.cms.gov/icd10m/version39-fullcode-cms/fullcode_cms/P0001.html}
+#' @keywords datasets
+#' @examples
+#' tail(icd10cm_mdc_regex)
+
+"icd10cm_mdc_regex"
 
 
 #' County FIPS codes for WA State.
@@ -105,3 +133,6 @@
 #' head(wa_fips_codes)
 #'
 "wa_fips_codes"
+
+
+
