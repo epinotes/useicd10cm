@@ -16,3 +16,4 @@ docs
 *.xlsx
 *.txt
 mdc_drg_icd10cm_39.R
+*.rds
