@@ -17,6 +17,6 @@ icd10cm_codes_regex
 Dataset of 72,616 rows and 3 variables.
 }
 \examples{
-tail(icd10cm_codes_2021)
+tail(icd10cm_codes_regex)
 }
 \keyword{datasets}
