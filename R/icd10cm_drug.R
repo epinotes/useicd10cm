@@ -47,30 +47,21 @@ icd_drug_opioid_ish <- function(data, diag_ecode_col) {
     icd_create_indicator(new_name = "any_opioid_ish",
                          expr = opioid_icd10cm_ish_,
                          colvec = diag_ecode_col) %>%
-    mutate(
-      non_heroin_opioid_ish = icd_new_diag(.,
-                                           expr = non_heroin_opioid_icd10cm_ish_,
-                                           colvec = diag_ecode_col
-      ),
-
-      heroin_ish = icd_new_diag(.,
-                                expr = heroin_icd10cm_ish_,
-                                colvec = diag_ecode_col
-      ),
-
-      stimulant_ish = icd_new_diag(.,
-                                   expr = stimulant_icd10cm_ish_,
-                                   colvec = diag_ecode_col
-      ),
-      cocaine_ish = icd_new_diag(.,
-                                 expr = cocaine_icd10cm_ish_,
-                                 colvec = diag_ecode_col
-      ),
-      non_cocaine_stimulant_ish = icd_new_diag(.,
-                                               expr = non_cocaine_stimulant_icd10cm_ish_,
-                                               colvec = diag_ecode_col
-      )
-    ) %>%
+    icd_create_indicator(new_name = "non_heroin_opioid_ish",
+                         expr = non_heroin_opioid_icd10cm_ish_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "heroin_ish",
+                         expr = heroin_icd10cm_ish_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "stimulant_ish",
+                         expr = stimulant_icd10cm_ish_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "cocaine_ish",
+                         expr = cocaine_icd10cm_ish_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "non_cocaine_stimulant_ish",
+                         expr = non_cocaine_stimulant_icd10cm_ish_,
+                         colvec = diag_ecode_col) %>%
     mutate(
       non_heroin_opioid_ish = ifelse(heroin_ish == 1, 0, non_heroin_opioid_ish),
       non_cocaine_stimulant_ish = ifelse(cocaine_ish == 1, 0, non_cocaine_stimulant_ish)
@@ -122,40 +113,27 @@ icd_drug_opioid_uu <- function(data, diag_ecode_col) {
 
 
   data %>%
-    mutate(
-      any_drug_uu = icd_new_diag(.,
-                                 expr = drugs_icd10cm_uu_,
-                                 colvec = diag_ecode_col
-      ),
-
-      any_opioid_uu = icd_new_diag(.,
-                                   expr = opioid_icd10cm_uu_,
-                                   colvec = diag_ecode_col
-      ),
-
-      non_heroin_opioid_uu = icd_new_diag(.,
-                                          expr = non_heroin_opioid_icd10cm_uu_,
-                                          colvec = diag_ecode_col
-      ),
-
-      heroin_uu = icd_new_diag(.,
-                               expr = heroin_icd10cm_uu_,
-                               colvec = diag_ecode_col
-      ),
-
-      stimulant_uu = icd_new_diag(.,
-                                  expr = stimulant_icd10cm_uu_,
-                                  colvec = diag_ecode_col
-      ),
-      cocaine_uu = icd_new_diag(.,
-                                expr = cocaine_icd10cm_uu_,
-                                colvec = diag_ecode_col
-      ),
-      non_cocaine_stimulant_uu = icd_new_diag(.,
-                                              expr = non_cocaine_stimulant_icd10cm_uu_,
-                                              colvec = diag_ecode_col
-      )
-    ) %>%
+    icd_create_indicator(new_name = "any_drug_uu",
+                         expr = drugs_icd10cm_uu_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "any_opioid_uu",
+                         expr = opioid_icd10cm_uu_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "non_heroin_opioid_uu",
+                         expr = non_heroin_opioid_icd10cm_uu_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "heroin_uu",
+                         expr = heroin_icd10cm_uu_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "stimulant_uu",
+                         expr = stimulant_icd10cm_uu_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "cocaine_uu",
+                         expr = cocaine_icd10cm_uu_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "non_cocaine_stimulant_uu",
+                         expr = non_cocaine_stimulant_icd10cm_uu_,
+                         colvec = diag_ecode_col) %>%
     mutate(
       non_heroin_opioid_uu = ifelse(heroin_uu == 1, 0, non_heroin_opioid_uu),
       non_cocaine_stimulant_uu = ifelse(cocaine_uu == 1, 0, non_cocaine_stimulant_uu)
@@ -203,40 +181,27 @@ icd_drug_opioid <- function(data, diag_ecode_col) {
 
 
   data %>%
-    mutate(
-      any_drug = icd_new_diag(.,
-                              expr = drugs_icd10cm_,
-                              colvec = diag_ecode_col
-      ),
-
-      any_opioid = icd_new_diag(.,
-                                expr = opioid_icd10cm_,
-                                colvec = diag_ecode_col
-      ),
-
-      non_heroin_opioid = icd_new_diag(.,
-                                       expr = non_heroin_opioid_icd10cm_,
-                                       colvec = diag_ecode_col
-      ),
-
-      heroin = icd_new_diag(.,
-                            expr = heroin_icd10cm_,
-                            colvec = diag_ecode_col
-      ),
-
-      stimulant = icd_new_diag(.,
-                               expr = stimulant_icd10cm_,
-                               colvec = diag_ecode_col
-      ),
-      cocaine = icd_new_diag(.,
-                             expr = cocaine_icd10cm_,
-                             colvec = diag_ecode_col
-      ),
-      non_cocaine_stimulant = icd_new_diag(.,
-                                           expr = non_cocaine_stimulant_icd10cm_,
-                                           colvec = diag_ecode_col
-      )
-    ) %>%
+    icd_create_indicator(new_name = "any_drug",
+                         expr = drugs_icd10cm_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "any_opioid",
+                         expr = opioid_icd10cm_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "non_heroin_opioid",
+                         expr = non_heroin_opioid_icd10cm_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "heroin",
+                         expr = heroin_icd10cm_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "stimulant",
+                         expr = stimulant_icd10cm_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "cocaine",
+                         expr = cocaine_icd10cm_,
+                         colvec = diag_ecode_col) %>%
+    icd_create_indicator(new_name = "non_cocaine_stimulant",
+                         expr = non_cocaine_stimulant_icd10cm_,
+                         colvec = diag_ecode_col) %>%
     mutate(
       non_heroin_opioid = ifelse(heroin == 1, 0, non_heroin_opioid),
       non_cocaine_stimulant = ifelse(cocaine == 1, 0, non_cocaine_stimulant)
