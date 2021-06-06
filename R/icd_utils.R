@@ -103,6 +103,41 @@ icd_first_valid_index <- function(data, colvec, pattern) {
     purrr::map_int(f1)
 }
 
+
+# icd_first_match_index ---------------------------------------------------
+
+#' Row operation that creates a vector of indices of the first match of a pattern
+#'
+#' @param data input data
+#'
+#' @param colvec selected columns to match
+#' @param pattern the pattern to match
+#' @param new_name proposed name for the new variable
+#' @return return the vector of the indices of the matches with 0 for no match
+#' @export
+#' @importFrom purrr transpose detect_index map_dfr map_int
+#'
+#' @examples
+#'
+#' dat <- data.frame(x1 = letters[1:3], x2 = c("d", "a", "e"))
+#' library(dplyr)
+#' library(purrr)
+#' dat %>% icd_first_match_index(new_name = "x3", colvec = c(1:2), pattern = "a")
+#'
+icd_first_match_index <- function(data, new_name, colvec, pattern) {
+
+  requireNamespace("dplyr", quietly = T)
+  requireNamespace("purrr", quietly = T)
+
+  f0 <- function(x) grepl(pattern = pattern, x, ignore.case = T, perl = T)
+  f1 <- function(x) detect_index(x, f0)
+  data %>%
+    rowwise() %>%
+    mutate({{new_name}} := f1(c_across({{colvec}})))
+}
+
+
+
 # icd_first_valid ---------------------------------------------------------
 
 
@@ -141,6 +176,40 @@ icd_first_valid <- function(data, colvec, pattern) {
     unlist()
 }
 
+
+# icd_first_match ---------------------------------------------------------
+
+#' a row operation that will form a vector of the first match of a pattern.
+#'
+#'
+#' @param data input data
+#' @param new_name proposed name for the new variable
+#' @param colvec selected columns to match
+#' @param pattern the pattern to match
+
+#' @return return the vector of the matched characters with NA for a no match
+#'
+#' @export
+#' @importFrom purrr transpose detect map map_if
+#'
+#' @examples
+#'
+#' dat <- data.frame(x1 = letters[1:3], x2 = c("d", "a", "e"))
+#' library(dplyr)
+#' library(purrr)
+#' dat %>% icd_first_match(new_name = "x3", colvec = c(1:2), pattern = "a")
+icd_first_match <- function(data, new_name, colvec, pattern) {
+
+  requireNamespace("dplyr", quietly = T)
+  requireNamespace("purrr", quietly = T)
+
+  # colvec <- enquo(colvec)
+  f0 <- function(x) grepl(pattern = pattern, x, ignore.case = T, perl = T)
+  f1 <- function(x) detect(x, f0, .default = NA_character_)
+  data %>%
+    rowwise() %>%
+    mutate({{new_name}} := f1(c_across({{colvec}})))
+}
 
 # icd_make_regex ----------------------------------------------------------
 
