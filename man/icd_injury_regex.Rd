@@ -3,6 +3,9 @@
 \name{icd_injury_regex}
 \alias{icd_injury_regex}
 \title{Selected injury ICD 10 CM regular expressions}
+\source{
+\url{https://resources.cste.org/Injury-Surveillance-Methods-Toolkit/Home/GeneralInjuryIndicators}
+}
 \usage{
 icd_injury_regex()
 }

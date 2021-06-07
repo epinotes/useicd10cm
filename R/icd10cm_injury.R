@@ -5,7 +5,8 @@
 #'
 #' @return Return objects of regular expressions in the global environment
 #' @export
-#'
+#' @source
+#'   \url{https://resources.cste.org/Injury-Surveillance-Methods-Toolkit/Home/GeneralInjuryIndicators}
 #' @examples
 #'
 #' icd_injury_regex()
@@ -138,9 +139,9 @@ icd_select_intent <- function(data, inj_col, ...) {
   requireNamespace("dplyr", quietly = T)
   # utility function making ... a regex
 
-  select_keyword <- function(...){
+  select_keyword <- function(...) {
 
-    if(!length(list(...))){
+    if(!length(list(...))) {
       keywd <- ""
     }
     else {
@@ -150,7 +151,7 @@ icd_select_intent <- function(data, inj_col, ...) {
   }
 
   icd10cm_inj <- icd10cm_intent_regex %>%
-    filter(grepl(select_keyword(...), intent, ignore.case = T, perl = T))
+    filter(grepl(select_keyword(...), intent_mechanism, ignore.case = T, perl = T))
 
   list_int_mech <- icd10cm_inj %>%
     pull(intent_mechanism)
@@ -160,15 +161,16 @@ icd_select_intent <- function(data, inj_col, ...) {
   # utility function to add field names
 
   add_field_names <- function(data = data, inj_col, var_name, expr) {
-    # var_name <- quo_name(var_name)
+    var_name <- quo_name(var_name)
     data %>%
-      mutate({{var_name}} := icd_new_diag(., expr = expr, colvec = inj_col)) %>%
+      icd_create_indicator(new_name = {{var_name}}, expr = expr, colvec = inj_col) %>%
       select({{var_name}})
   }
 
   # add the new fields to the original data
 
-  dat2 <- purrr::map2_dfc(.x = list_int_mech, .y = list_expr, ~ add_field_names(data = data, inj_col = inj_col, var_name = .x, expr = .y))
+  dat2 <- map2_dfc(.x = list_int_mech, .y = list_expr,
+                   ~ add_field_names(data = data, inj_col = inj_col, var_name = .x, expr = .y))
 
   data %>% bind_cols(dat2)
 }
@@ -199,9 +201,9 @@ icd_select_mechanism <- function(data, inj_col, ...) {
   requireNamespace("dplyr", quietly = T)
   # utility function making ... a regex
 
-  select_keyword <- function(...){
+  select_keyword <- function(...) {
 
-    if(!length(list(...))){
+    if(!length(list(...))) {
       keywd <- ""
     }
     else {
@@ -211,7 +213,7 @@ icd_select_mechanism <- function(data, inj_col, ...) {
   }
 
   icd10cm_inj <- icd10cm_mech_regex %>%
-    filter(grepl(select_keyword(...), mechanism, ignore.case = T, perl = T))
+    filter(grepl(select_keyword(...), intent_mechanism, ignore.case = T, perl = T))
 
   list_int_mech <- icd10cm_inj %>%
     pull(intent_mechanism)
@@ -223,14 +225,15 @@ icd_select_mechanism <- function(data, inj_col, ...) {
   add_field_names <- function(data = data, inj_col, var_name, expr) {
     var_name <- quo_name(var_name)
     data %>%
-      mutate(!!var_name := icd_new_diag(., expr = expr, colvec = inj_col)) %>%
-      select(!!var_name)
+      icd_create_indicator(new_name = {{var_name}},
+                           expr = expr, colvec = inj_col) %>%
+      select({{var_name}})
   }
 
   # add the new fields to the original data
 
-  dat2 <- purrr::map2_dfc(.x = list_int_mech, .y = list_expr, ~ add_field_names(data = data, inj_col = inj_col, var_name = .x, expr = .y))
+  dat2 <- map2_dfc(.x = list_int_mech, .y = list_expr,
+                   ~ add_field_names(data = data, inj_col = inj_col, var_name = .x, expr = .y))
 
   data %>% bind_cols(dat2)
 }
-
