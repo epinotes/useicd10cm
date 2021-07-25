@@ -35,3 +35,6 @@ dat \%>\% icd_intent_mech(inj_col = c(1, 2), reference = "intent")
 dat \%>\% icd_intent_mech(inj_col = c(1, 2), reference = "mechanism")
 
 }
+\seealso{
+\code{\link{icd_matched_intent_mech}} for a more efficient approach
+}

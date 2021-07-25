@@ -29,3 +29,6 @@ dat <- data.frame(
 dat \%>\% icd_select_mechanism(inj_col = c(1, 2), "fall", "firearm") # by default all mechanisms
 
 }
+\seealso{
+\code{\link{icd_matched_mechanism}} for a more efficient approach
+}

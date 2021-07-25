@@ -30,3 +30,6 @@ dat <- data.frame(
 dat \%>\% icd_select_intent(inj_col = c(1, 2), "untintentional", "assault")
 
 }
+\seealso{
+\code{\link{icd_matched_intent}} for a more efficient approach
+}
