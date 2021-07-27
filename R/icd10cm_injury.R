@@ -278,7 +278,7 @@ icd_matched_intent_mech <- function(data, inj_col) {
 
 
   dat2 <- data %>%
-    mutate(u.id. = 1:nrow(.))
+    add_column(u.id. = c(1:nrow(.)))
 
   dat3 <- dat2 %>%
     select(u.id., all_of(inj_col)) %>%
@@ -337,7 +337,7 @@ icd_matched_intent <- function(data, inj_col) {
 
 
   dat2 <- data %>%
-    mutate(u.id. = 1:nrow(.))
+    add_column(u.id. = c(1:nrow(.)))
 
   dat3 <- dat2 %>%
     select(u.id., all_of(inj_col)) %>%
@@ -395,7 +395,7 @@ icd_matched_mechanism <- function(data, inj_col) {
 
 
   dat2 <- data %>%
-    mutate(u.id. = 1:nrow(.))
+    add_column(u.id. = c(1:nrow(.)))
 
   dat3 <- dat2 %>%
     select(u.id., all_of(inj_col)) %>%
