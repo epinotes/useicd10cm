@@ -255,7 +255,7 @@ icd_select_mechanism <- function(data, inj_col, ...) {
 #' @param inj_col ecode and diagnosis column indices
 
 #'
-#' @return return the input with additional variables (intent_mechanism combinations, that were matched in the data)
+#' @return return the input with additional variables ( 92 intent_mechanism combinations)
 #'
 #' @export
 #' @importFrom fuzzyjoin regex_left_join
@@ -276,6 +276,13 @@ icd_matched_intent_mech <- function(data, inj_col) {
   requireNamespace("tidyr", quietly = T)
   requireNamespace("fuzzyjoin", quietly = T)
 
+  data_names_ <- names(data)
+
+  added_names_ <- icd10cm_intent_mech_regex$intent_mechanism
+
+  col_to_add_ <- rep(NA_character_, length(added_names_)) %>%
+    set_names(added_names_)
+
 
   dat2 <- data %>%
     add_column(u.id. = c(1:nrow(.)))
@@ -291,16 +298,15 @@ icd_matched_intent_mech <- function(data, inj_col) {
     distinct() %>%
     mutate(case = 1)
 
-  sel_ <- unique(dat3$intent_mechanism)
-
   dat4 <- dat3 %>%
     pivot_wider(id_cols = u.id., names_from = intent_mechanism,
-                values_from = case)
+                values_from = case) %>%
+    add_column(!!!col_to_add_[!names(col_to_add_) %in% names(.)])
 
   dat2 %>%
     left_join(dat4, by = "u.id.") %>%
-    mutate(across(all_of(sel_), replace_na, replace = 0)) %>%
-    select(-u.id.)
+    dplyr::mutate(across(all_of(added_names_), replace_na, replace = 0)) %>%
+    select(all_of(data_names_), all_of(added_names_))
 
 }
 
@@ -314,7 +320,7 @@ icd_matched_intent_mech <- function(data, inj_col) {
 #' @param inj_col ecode and diagnosis column indices
 
 #'
-#' @return return the input with additional variables (intents that were matched in the data)
+#' @return return the input with additional variables (5 intents)
 #'
 #' @export
 #' @importFrom fuzzyjoin regex_left_join
@@ -335,6 +341,14 @@ icd_matched_intent <- function(data, inj_col) {
   requireNamespace("tidyr", quietly = T)
   requireNamespace("fuzzyjoin", quietly = T)
 
+  data_names_ <- names(data)
+
+  added_names_ <- icd10cm_intent_regex$intent_mechanism
+
+  col_to_add_ <- rep(NA_character_, length(added_names_)) %>%
+    set_names(added_names_)
+
+
 
   dat2 <- data %>%
     add_column(u.id. = c(1:nrow(.)))
@@ -350,16 +364,15 @@ icd_matched_intent <- function(data, inj_col) {
     distinct() %>%
     mutate(case = 1)
 
-  sel_ <- unique(dat3$intent_mechanism)
-
   dat4 <- dat3 %>%
     pivot_wider(id_cols = u.id., names_from = intent_mechanism,
-                values_from = case)
+                values_from = case) %>%
+    add_column(!!!col_to_add_[!names(col_to_add_) %in% names(.)])
 
   dat2 %>%
     left_join(dat4, by = "u.id.") %>%
-    mutate(across(all_of(sel_), replace_na, replace = 0)) %>%
-    select(-u.id.)
+    dplyr::mutate(across(all_of(added_names_), replace_na, replace = 0)) %>%
+    select(all_of(data_names_), all_of(added_names_))
 
 }
 
@@ -372,7 +385,7 @@ icd_matched_intent <- function(data, inj_col) {
 #' @param inj_col ecode and diagnosis column indices
 
 #'
-#' @return return the input with additional variables (mechanisms that were matched in the data)
+#' @return return the input with additional variables (32 mechanisms)
 #'
 #' @export
 #' @importFrom fuzzyjoin regex_left_join
@@ -393,6 +406,12 @@ icd_matched_mechanism <- function(data, inj_col) {
   requireNamespace("tidyr", quietly = T)
   requireNamespace("fuzzyjoin", quietly = T)
 
+  data_names_ <- names(data)
+
+  added_names_ <- icd10cm_mech_regex$intent_mechanism
+
+  col_to_add_ <- rep(NA_character_, length(added_names_)) %>%
+    set_names(added_names_)
 
   dat2 <- data %>%
     add_column(u.id. = c(1:nrow(.)))
@@ -408,16 +427,15 @@ icd_matched_mechanism <- function(data, inj_col) {
     distinct() %>%
     mutate(case = 1)
 
-  sel_ <- unique(dat3$intent_mechanism)
-
   dat4 <- dat3 %>%
     pivot_wider(id_cols = u.id., names_from = intent_mechanism,
-                values_from = case)
+                values_from = case) %>%
+    add_column(!!!col_to_add_[!names(col_to_add_) %in% names(.)])
 
   dat2 %>%
     left_join(dat4, by = "u.id.") %>%
-    mutate(across(all_of(sel_), replace_na, replace = 0)) %>%
-    select(-u.id.)
+    dplyr::mutate(across(all_of(added_names_), replace_na, replace = 0)) %>%
+    select(all_of(data_names_), all_of(added_names_))
 
 }
 
