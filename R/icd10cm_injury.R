@@ -1,4 +1,118 @@
 
+# icd10cm core svipp non fatal injury indicators ----------------------------------
+
+#' Find core svipp indicators from ICD-10-CM.
+#'
+#' Find nonfatal injury indicators
+#'
+#' @param data input data
+#' @param diag_ecode_col column indices
+#'
+#' @return selected core svipp nonfatal injury indicators
+#' @export
+#' @source
+#' \url{https://www.cdc.gov/injury/pdfs/2019_state_injury_indicator_instructions-508.pdf}
+#'
+#' @examples
+#'
+#' library(dplyr)
+#' library(purrr)
+#' icd10cm_data150 %>%
+#'   icd_svip(diag_ecode_col = c(2:6)) %>%
+#'   sample_n(10)
+icd_svip <- function(data, diag_ecode_col) {
+  requireNamespace("dplyr", quietly = T)
+
+  icd10cm_valid_injury_ <- "(S.....|(T3[679]9|T414|T427|T4[3579]9)[1-4].|(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..[1-4]|(T[012].|T3[34]|T5[1-9]|T6.|T7[0-6]|T79|M97)...|T8404.|O9A[2-5]..|T3[0-2].)(A|B|C|$)" # Diagnosis codes
+
+  icd10cm_drowning_ <- "(T751..|W16[49]1.|(?!W16[49])W16..1|W22041|(V9[02]|W6[5-9]|W7[0-4]|X71|X92|Y21)...)(A|$)"
+
+  icd10cm_unintentional_falls_ <- "((?!V000)V00..1|(W0.|W1[0-579])...|W18[123]..|W16[49]2.|(?!W16[49])W16..2)(A|$)"
+
+  icd10cm_hip_fracture_ <- "(S72[012]..|M970..|T8404[01])(A|B|C|$)"
+
+  icd10cm_unintentional_fire_ <- "(X0[0-8]...)(A|$)"
+
+  icd10cm_firearm_ <- "((W3[23]0|(^X74|X95|Y24)[89]|Y350|Y384)..|((^X7|Y2)[23]|^X9[34])...|W340[09].)(A|$)"
+
+  icd10cm_assault_ <- "((T3[679]9|T414|T427|T4[3579]9)3.|(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..3|((T5[1-46-9]|T6[0-35])9|(T58|T61)[01]|T64[08])3.|(?!((T5[1-46-9]|T6[0-35])9|(T58|T61)[01]|T64[08]))(T5[1-9]|T6[0-5])..3|T71..3|(X9[2-9]|Y0[0-68])...|Y07.{1,3}|Y09)(A|$)"
+
+  icd10cm_unintentional_mvt_ <- "((V0[234][19]|V092|V1[2-4][3-9]|V19[4-6]|V2[0-8][3-9]|V29[4-9]|V[3-7].[4-9]|V8[3-6][0-3]|V87[0-8]|V892|V80[3-5]|V8[12]1)..)(A|$)"
+
+  icd10cm_non_drug_poisoning_ <- "((T5[1-9]|T6[0-5])...|(T38[67]|Y352)..)(A|$)"
+
+  icd10cm_intentional_self_harm_ <- "((T3[679]9|T414|T427|T4[3579]9)2.|(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..2|((T5[1-46-9]|T6[0-35])9|(T58|T61)[01]|T64[08])2.|(?!((T5[1-46-9]|T6[0-35])9|(T58|T61)[01]|T64[08]))(T5[1-9]|T6[0-5])..2|(^X7[1-9]|^X8[0-3])...|T71..2|T1491.)(A|$)"
+
+  icd10cm_tbi_ <- "((S02[018].|S0291|S040[2-4]|S06..|S071.|T744.).)(A|B|$)"
+
+  icd10cm_S0990_ <- "S0990" # Unspecified injury of head
+
+  data %>%
+    icd_create_indicator(
+      new_name = "svip_valid_injury",
+      expr = icd10cm_valid_injury_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_drowning",
+      expr = icd10cm_drowning_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_falls",
+      expr = icd10cm_unintentional_falls_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_hip_fracture",
+      expr = icd10cm_hip_fracture_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_fire",
+      expr = icd10cm_unintentional_fire_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_firearm",
+      expr = icd10cm_firearm_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_assault",
+      expr = icd10cm_assault_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_mvt",
+      expr = icd10cm_unintentional_mvt_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_non_drug_poisoning",
+      expr = icd10cm_non_drug_poisoning_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_intentional_self_harm_",
+      expr = icd10cm_intentional_self_harm_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_tbi",
+      expr = icd10cm_tbi_,
+      colvec = diag_ecode_col
+    ) %>%
+    icd_create_indicator(
+      new_name = "svip_S0990",
+      expr = icd10cm_S0990_,
+      colvec = diag_ecode_col
+    ) %>%
+    mutate(
+      svip_tbi_S0990 = ifelse((svip_tbi == 0 & svip_S0990 == 1), 1, 0),
+    )
+}
+
 # icd_injury_regex --------------------------------------------------------
 
 #' Selected injury ICD 10 CM regular expressions
