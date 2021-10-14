@@ -1,4 +1,40 @@
 
+# icd10cm core svipp valid injury subset ----------------------------------
+
+#' Find core svipp valid injury cases from ICD-10-CM.
+#'
+#' Find nonfatal injury cases
+#'
+#' @param data input data
+#' @param diag_col principal diagnosis code column
+#'
+#' @return core svipp nonfatal injury cases
+#' @export
+#' @source
+#' \url{https://www.cdc.gov/injury/pdfs/2019_state_injury_indicator_instructions-508.pdf}
+#'
+#' @examples
+#'
+#' library(dplyr)
+#' library(purrr)
+#' icd10cm_data150 %>%
+#'   icd_svip_injury(diag_col = c(2:6)) %>%
+#'   sample_n(10)
+icd_svip_injury <- function(data, diag_col) {
+  requireNamespace("dplyr", quietly = T)
+
+  icd10cm_valid_injury_ <- "(S.....|(T3[679]9|T414|T427|T4[3579]9)[1-4].|(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..[1-4]|(T[012].|T3[34]|T5[1-9]|T6.|T7[0-6]|T79|M97)...|T8404.|O9A[2-5]..|T3[0-2].)(A|B|C|$)" # Diagnosis codes
+
+
+  data %>%
+    icd_create_indicator(
+      new_name = "svip_valid_injury",
+      expr = icd10cm_valid_injury_,
+      colvec = diag_col
+    )
+}
+
+
 # icd10cm core svipp non fatal injury indicators ----------------------------------
 
 #' Find core svipp indicators from ICD-10-CM.
@@ -94,7 +130,7 @@ icd_svip <- function(data, diag_ecode_col) {
       colvec = diag_ecode_col
     ) %>%
     icd_create_indicator(
-      new_name = "svip_intentional_self_harm_",
+      new_name = "svip_intentional_self_harm",
       expr = icd10cm_intentional_self_harm_,
       colvec = diag_ecode_col
     ) %>%
