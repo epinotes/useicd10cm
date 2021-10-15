@@ -59,8 +59,6 @@ icd_svip_injury <- function(data, diag_col) {
 icd_svip <- function(data, diag_ecode_col) {
   requireNamespace("dplyr", quietly = T)
 
-  icd10cm_valid_injury_ <- "(S.....|(T3[679]9|T414|T427|T4[3579]9)[1-4].|(?!(T3[679]9|T414|T427|T4[3579]9))(T3[6-9]|T4[0-9]|T50)..[1-4]|(T[012].|T3[34]|T5[1-9]|T6.|T7[0-6]|T79|M97)...|T8404.|O9A[2-5]..|T3[0-2].)(A|B|C|$)" # Diagnosis codes
-
   icd10cm_drowning_ <- "(T751..|W16[49]1.|(?!W16[49])W16..1|W22041|(V9[02]|W6[5-9]|W7[0-4]|X71|X92|Y21)...)(A|$)"
 
   icd10cm_unintentional_falls_ <- "((?!V000)V00..1|(W0.|W1[0-579])...|W18[123]..|W16[49]2.|(?!W16[49])W16..2)(A|$)"
@@ -84,11 +82,6 @@ icd_svip <- function(data, diag_ecode_col) {
   icd10cm_S0990_ <- "S0990" # Unspecified injury of head
 
   data %>%
-    icd_create_indicator(
-      new_name = "svip_valid_injury",
-      expr = icd10cm_valid_injury_,
-      colvec = diag_ecode_col
-    ) %>%
     icd_create_indicator(
       new_name = "svip_drowning",
       expr = icd10cm_drowning_,
